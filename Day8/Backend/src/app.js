@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 const noteModel = require("./models/notes.model.js")
+const cors = require('cors')
 // here is the api to creta ethe note
 app.use(express.json())
+app.use(cors());
+
 app.post('/api/notes',async(req,res)=>{
      const {title,desc}  = req.body
   const note =  await noteModel.create({
