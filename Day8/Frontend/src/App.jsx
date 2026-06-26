@@ -7,7 +7,7 @@ const App = () => {
 
   const [notes, setnotes] = useState([]);
   function fetchNotes() {
-    axios.get('http://localhost:3000/api/notes')
+    axios.get('https://backend2-1-lnp2.onrender.com/api/notes')
       .then((res) => {
         setnotes(res.data.notes);
         
@@ -28,7 +28,7 @@ const App = () => {
 
     console.log(title,desc)
     // here we are calling the api to create the notes
-    axios.post('http://localhost:3000/api/notes',{
+    axios.post('https://backend2-1-lnp2.onrender.com/api/notes',{
       title : title ,
       desc:desc
     }).then((res)=>{
@@ -42,7 +42,7 @@ const App = () => {
 
 function submitDelete(id){
   console.log(id);
-  axios.delete('http://localhost:3000/api/notes/' + id)
+  axios.delete('https://backend2-1-lnp2.onrender.com/api/notes/' + id)
   .then((res)=>{
       console.log(res.data.message)
       fetchNotes();
@@ -53,7 +53,7 @@ function submitUpdate(id){
   console.log(id)
   const newDesc = prompt("Enter new desc");
 
-  axios.patch('http://localhost:3000/api/notes/' + id,{
+  axios.patch('https://backend2-1-lnp2.onrender.com/api/notes/' + id,{
     desc : newDesc
   }).then((res)=>{
       console.log(res.data.message)
