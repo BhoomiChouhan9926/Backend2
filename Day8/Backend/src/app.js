@@ -2,8 +2,10 @@ const express = require('express');
 const app = express();
 const noteModel = require("./models/notes.model.js")
 const cors = require('cors')
+const path = require('path');
 // here is the api to creta ethe note
 app.use(express.json())
+app.use(express.static('./public'))
 app.use(cors());
 
 app.post('/api/notes',async(req,res)=>{
@@ -44,8 +46,12 @@ app.patch('/api/notes/:id', async(req,res)=>{
     const updatedNote =await noteModel.findByIdAndUpdate(id,{desc});
 
     res.status(200).json({
-        "message":updatedNote
+        "message":"Note updated sucessfully"
     })
 
+})
+app.use('*name',(req,res)=>{
+    console.log(__dirname)
+    res.sendFile(path.join(__dirname,'../public/index.html'))
 })
 module.exports = app;
